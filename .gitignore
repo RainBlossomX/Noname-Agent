@@ -1,0 +1,9 @@
+# 忽略日志文件夹
+/chat_logs/
+
+# 忽略 VS Code 配置文件夹
+.vscode/
+
+# 忽略 Python 缓存文件夹
+__pycache__/
+*.pyc
