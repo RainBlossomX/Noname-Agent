@@ -10,18 +10,18 @@ import openai
 import subprocess
 import os
 from typing import Dict, Any
-from config import load_config
-from utils import get_location, scan_windows_apps, open_website, open_application
-from weather import WeatherTool
-from amap_tool import AmapTool
-from memory_lake import MemoryLake
-from mcp_server import LocalMCPServer
-from search_tool import search_web as web_search
-from search_summary_agent import process_search_result, should_search
-from search_query_extractor import extract_search_query
-from playwright_tool import playwright_search, playwright_open_url, playwright_interact, playwright_open_website_headed
-from file_analysis_tool import FileAnalysisTool
-from webpage_agent_unified import execute_webpage_task_sync
+from config.config import load_config
+from src.utils.utils import get_location, scan_windows_apps, open_website, open_application
+from src.agents.weather import WeatherTool
+from src.tools.amap_tool import AmapTool
+from src.memory.memory_lake import MemoryLake
+from src.services.mcp_server import LocalMCPServer
+from src.tools.search_tool import search_web as web_search
+from src.agents.search_summary_agent import process_search_result, should_search
+from src.agents.search_query_extractor import extract_search_query
+from src.tools.playwright_tool import playwright_search, playwright_open_url, playwright_interact, playwright_open_website_headed
+from src.tools.file_analysis_tool import FileAnalysisTool
+from src.agents.webpage_agent_unified import execute_webpage_task_sync
 
 class MCPTools:
     """MCP工具管理类"""
@@ -134,7 +134,7 @@ class AIAgent:
         self.recent_file_analysis = None  # 存储最近一次的文件分析结果
         
         # 框架ReAct Agent（默认启用，轻量级任务规划）
-        from framework_react_agent import FrameworkReActAgent
+        from src.agents.framework_react_agent import FrameworkReActAgent
         intent_model = config.get("search_intent_model", "deepseek-chat")
         self.framework_agent = FrameworkReActAgent(self, intent_model)
         print(f"🧠 框架ReAct模式已启用（使用模型：{intent_model}）")
@@ -154,7 +154,7 @@ class AIAgent:
             azure_key = config.get("azure_tts_key", "")
             azure_region = config.get("azure_region", "eastasia")
             if azure_key:
-                from tts_manager import TTSManager
+                from src.core.tts_manager import TTSManager
                 self.tts_manager = TTSManager(azure_key, azure_region)
                 print("✅ TTS管理器初始化成功")
             else:
@@ -3102,7 +3102,7 @@ Purpose: Commander's English music collection"""
                             print(f"📄 开始浏览 {len(urls)} 个页面（包含 {len(direct_urls)} 个直接指定URL）...")
                             
                             # 导入多页面浏览功能
-                            from playwright_tool import playwright_browse_multiple
+                            from src.tools.playwright_tool import playwright_browse_multiple
                             
                             # 浏览多个页面
                             browse_data = playwright_browse_multiple(urls, max_content_length=3000)
@@ -4654,7 +4654,7 @@ Purpose: Commander's English music collection"""
                 
                 # 如果是connect模式，检查并启动调试浏览器
                 if pw_mode == "connect":
-                    from cdp_helper import ensure_cdp_connection
+                    from src.tools.cdp_helper import ensure_cdp_connection
                     cdp_result = ensure_cdp_connection(
                         cdp_url=pw_cdp_url,
                         browser_type=default_browser,
@@ -4719,7 +4719,7 @@ Purpose: Commander's English music collection"""
                 
                 # 如果是connect模式，检查并启动调试浏览器
                 if pw_mode == "connect":
-                    from cdp_helper import ensure_cdp_connection
+                    from src.tools.cdp_helper import ensure_cdp_connection
                     cdp_result = ensure_cdp_connection(
                         cdp_url=pw_cdp_url,
                         browser_type=default_browser,
@@ -4787,7 +4787,7 @@ Purpose: Commander's English music collection"""
                 
                 # 如果是connect模式，检查并启动调试浏览器
                 if pw_mode == "connect":
-                    from cdp_helper import ensure_cdp_connection
+                    from src.tools.cdp_helper import ensure_cdp_connection
                     cdp_result = ensure_cdp_connection(
                         cdp_url=pw_cdp_url,
                         browser_type=default_browser,
@@ -4832,7 +4832,7 @@ Purpose: Commander's English music collection"""
                     
                     # 如果是connect模式，检查并启动调试浏览器
                     if pw_mode == "connect":
-                        from cdp_helper import ensure_cdp_connection
+                        from src.tools.cdp_helper import ensure_cdp_connection
                         cdp_result = ensure_cdp_connection(
                             cdp_url=pw_cdp_url,
                             browser_type=default_browser,
@@ -5555,7 +5555,7 @@ Purpose: Commander's English music collection"""
     def update_tts_config(self, config):
         """更新TTS配置"""
         try:
-            from tts_manager import TTSManager
+            from src.core.tts_manager import TTSManager
             
             azure_key = config.get("azure_tts_key", "")
             azure_region = config.get("azure_region", "eastasia")

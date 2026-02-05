@@ -10,9 +10,9 @@ import datetime
 import re
 import openai
 import numpy as np
-from config import load_config
-from memory_summary_agent import MemorySummaryAgent
-from simple_vector_encoder import get_vector_encoder
+from config.config import load_config
+from src.memory.memory_summary_agent import MemorySummaryAgent
+from src.tools.simple_vector_encoder import get_vector_encoder
 
 class MemoryLake:
     """记忆系统 - 识底深湖"""

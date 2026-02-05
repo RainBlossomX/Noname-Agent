@@ -44,7 +44,7 @@ except ImportError:
     safe_print("⚠️ python-docx 未安装，Word文档分析功能不可用")
 
 # Code analyzer for programming languages
-from code_analyzer import PythonCodeAnalyzer, GeneralCodeAnalyzer, CodeAnalysisResult
+from src.core.code_analyzer import PythonCodeAnalyzer, GeneralCodeAnalyzer, CodeAnalysisResult
 
 # LangChain imports - 延迟导入以避免启动时加载 PyTorch
 RecursiveCharacterTextSplitter = None
@@ -680,7 +680,7 @@ class FileAnalysisTool:
         
         # 初始化AI Agent
         if config:
-            from file_analysis_agent import FileAnalysisAgent
+            from src.agents.file_analysis_agent import FileAnalysisAgent
             self.ai_agent = FileAnalysisAgent(config)
         else:
             self.ai_agent = None

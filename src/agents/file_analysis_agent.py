@@ -9,7 +9,7 @@
 import json
 import openai
 from typing import Dict, Any, Optional
-from file_analysis_tool import FileAnalysisResult
+from src.tools.file_analysis_tool import FileAnalysisResult
 
 class FileAnalysisAgent:
     """文件分析AI Agent - 专门负责文件内容的AI智能分析"""
@@ -331,7 +331,7 @@ def test_file_analysis_agent():
     agent = FileAnalysisAgent(config)
     
     # 模拟文件分析结果
-    from file_analysis_tool import FileAnalysisResult
+    from src.tools.file_analysis_tool import FileAnalysisResult
     result = FileAnalysisResult(
         file_type="PDF",
         file_name="test.pdf",

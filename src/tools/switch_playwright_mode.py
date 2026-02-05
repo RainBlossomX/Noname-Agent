@@ -8,7 +8,7 @@ import json
 import sys
 import os
 
-CONFIG_FILE = "ai_agent_config.json"
+CONFIG_FILE = "config/ai_agent_config.json"
 
 def load_config():
     """加载配置文件"""
