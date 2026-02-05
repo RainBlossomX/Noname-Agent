@@ -191,7 +191,7 @@ python main.py
 网站管理功能作为 AI 智能识别的**补充**，让您可以添加 AI 不认识的小众网站或自定义网址。
 
 **配置方式**：
-在 `ai_agent_config.json` 中的 `website_map` 部分添加：
+在 `config/ai_agent_config.json` 中的 `website_map` 部分添加：
 
 ```json
 {
@@ -381,7 +381,7 @@ python main.py
 
 **浏览器配置**：
 
-在 `ai_agent_config.json` 中配置默认浏览器：
+在 `config/ai_agent_config.json` 中配置默认浏览器：
 ```json
 {
   "default_browser": "edge"
@@ -396,7 +396,7 @@ python main.py
 
 **Playwright 自动化配置**：
 
-在 `ai_agent_config.json` 中配置 Playwright 行为：
+在 `config/ai_agent_config.json` 中配置 Playwright 行为：
 
 ```json
 {
@@ -807,7 +807,7 @@ python -m playwright install chromium --force
 ### 自定义工具开发
 - **创建方式**：通过MCP工具管理界面的"新建工具"按钮
 - **代码格式**：Python函数，支持参数传递
-- **存储位置**：`custom_tools.json` 文件
+- **存储位置**：`config/custom_tools.json` 文件
 - **动态加载**：支持运行时重新加载自定义工具
 - **安全执行**：在隔离的命名空间中执行自定义代码
 - **API密钥管理**：支持快速替换代码中的"mykey"占位符为实际API密钥

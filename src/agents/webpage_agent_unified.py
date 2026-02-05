@@ -10,7 +10,7 @@ import json
 import asyncio
 from typing import Dict, Any, Optional, List
 from playwright.async_api import Page, Browser, BrowserContext, async_playwright
-from utils import open_website
+from src.utils.utils import open_website
 
 
 def get_or_create_event_loop():

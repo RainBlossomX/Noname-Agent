@@ -10,7 +10,7 @@ import warnings
 import logging
 from typing import Dict, List, Any, Optional
 from playwright.async_api import async_playwright, Browser, Page, BrowserContext
-from async_resource_manager import get_resource_manager
+from src.core.async_resource_manager import get_resource_manager
 
 # 抑制所有asyncio相关警告
 warnings.filterwarnings("ignore", category=ResourceWarning)
@@ -1040,12 +1040,12 @@ def playwright_open_website_headed(
                 print(f"🤖 启用ReAct推理模式，任务: {react_task}")
                 try:
                     # 导入并使用BrowserAutomationAgent
-                    from browser_automation_agent import BrowserAutomationAgent
+                    from src.agents.browser_automation_agent import BrowserAutomationAgent
                     
                     # 获取配置（尝试从全局或使用默认配置）
                     try:
                         import json
-                        with open("ai_agent_config.json", "r", encoding="utf-8") as f:
+                        with open("config/ai_agent_config.json", "r", encoding="utf-8") as f:
                             config = json.load(f)
                     except:
                         config = {}

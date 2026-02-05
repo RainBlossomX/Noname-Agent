@@ -11,9 +11,9 @@ from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
 from PyQt5.QtCore import Qt, QTimer, pyqtSignal
 from PyQt5.QtGui import QFont, QPixmap
 
-from ai_agent import AIAgent
-from ui_dialogs import SettingsDialog, MemoryLakeDialog, MCPToolsDialog
-from file_analysis_tool import FileAnalysisTool
+from src.agents.ai_agent import AIAgent
+from src.ui.dialogs.ui_dialogs import SettingsDialog, MemoryLakeDialog, MCPToolsDialog
+from src.tools.file_analysis_tool import FileAnalysisTool
 
 class AIAgentApp(QMainWindow):
     """露尼西亚AI助手主窗口"""
@@ -341,7 +341,7 @@ class AIAgentApp(QMainWindow):
         
         # 加载露尼西亚图片
         try:
-            # pixmap = QPixmap("Lunesia.png")
+            # pixmap = QPixmap("resources/icons/Lunesia.png")
             if not pixmap.isNull():
                 # 重新计算适合增加高度后的9:16比例尺寸
                 # 系统状态栏宽度固定为320px，露尼西亚图片宽度也要320px
@@ -1014,7 +1014,7 @@ class AIAgentApp(QMainWindow):
                 pass
             
             # 触发全局资源清理
-            from async_resource_manager import get_resource_manager
+            from src.core.async_resource_manager import get_resource_manager
             get_resource_manager().cleanup_all()
                 
         except Exception:

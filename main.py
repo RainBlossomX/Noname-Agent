@@ -17,7 +17,7 @@ import atexit
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtGui import QFont, QPalette, QColor
 from PyQt5.QtCore import QObject, pyqtSignal
-from async_resource_manager import cleanup_on_exit
+from src.core.async_resource_manager import cleanup_on_exit
 
 # 设置Windows控制台编码为UTF-8，避免emoji显示错误
 if sys.platform == 'win32':
@@ -42,9 +42,9 @@ logging.getLogger('asyncio').setLevel(logging.WARNING)
 logging.getLogger('playwright').setLevel(logging.WARNING)
 
 # 导入自定义模块
-from config import load_config
-from ai_agent import AIAgent
-from main_window import AIAgentApp
+from config.config import load_config
+from src.agents.ai_agent import AIAgent
+from src.main_window import AIAgentApp
 
 def main():
     """主程序入口"""

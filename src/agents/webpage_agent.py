@@ -8,8 +8,8 @@
 import openai
 import json
 from typing import Dict, Any, Optional, List
-from playwright_tool import playwright_open_website_headed
-from utils import open_website
+from src.tools.playwright_tool import playwright_open_website_headed
+from src.utils.utils import open_website
 
 
 class WebpageAgent:

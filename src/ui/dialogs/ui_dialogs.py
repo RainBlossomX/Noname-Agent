@@ -15,10 +15,10 @@ from PyQt5.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QTextEdit, QLine
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QIcon
 
-from config import save_config
-from utils import scan_windows_apps
-from memory_lake import MemoryLake
-from mcp_server import LocalMCPServer
+from config.config import save_config
+from src.utils.utils import scan_windows_apps
+from src.memory.memory_lake import MemoryLake
+from src.services.mcp_server import LocalMCPServer
 
 class SettingsDialog(QDialog):
     """设置对话框"""
@@ -1949,7 +1949,7 @@ class MCPToolsDialog(QDialog):
                 "type": "custom"
             }
             
-            with open("custom_tools.json", "w", encoding="utf-8") as f:
+            with open("config/custom_tools.json", "w", encoding="utf-8") as f:
                 json.dump(custom_tools, f, ensure_ascii=False, indent=2)
                 
         except Exception as e:
@@ -1998,15 +1998,15 @@ class MCPToolsDialog(QDialog):
             # 使用第一个找到的API密钥
             api_key = api_keys[0]
             try:
-                if os.path.exists("ai_agent_config.json"):
-                    with open("ai_agent_config.json", "r", encoding="utf-8") as f:
+                if os.path.exists("config/ai_agent_config.json"):
+                    with open("config/ai_agent_config.json", "r", encoding="utf-8") as f:
                         config = json.load(f)
                     
                     # 更新高德地图API密钥
                     config["amap_key"] = api_key
                     
                     # 保存更新后的配置
-                    with open("ai_agent_config.json", "w", encoding="utf-8") as f:
+                    with open("config/ai_agent_config.json", "w", encoding="utf-8") as f:
                         json.dump(config, f, ensure_ascii=False, indent=2)
                     
                     # 同时更新config.py中的默认值（如果存在）
@@ -2016,7 +2016,7 @@ class MCPToolsDialog(QDialog):
             except Exception as e:
                 print(f"⚠️ 同步API密钥失败: {str(e)}")
         
-        with open("custom_tools.json", "w", encoding="utf-8") as f:
+        with open("config/custom_tools.json", "w", encoding="utf-8") as f:
             json.dump(custom_tools, f, ensure_ascii=False, indent=2)
     
     def delete_custom_tool(self, tool_name):
@@ -2024,15 +2024,15 @@ class MCPToolsDialog(QDialog):
         custom_tools = self.load_custom_tools()
         if tool_name in custom_tools:
             del custom_tools[tool_name]
-            with open("custom_tools.json", "w", encoding="utf-8") as f:
+            with open("config/custom_tools.json", "w", encoding="utf-8") as f:
                 json.dump(custom_tools, f, ensure_ascii=False, indent=2)
     
     def get_latest_amap_key(self):
         """获取最新的高德地图API密钥"""
         try:
             # 直接从配置文件读取最新值
-            if os.path.exists("ai_agent_config.json"):
-                with open("ai_agent_config.json", "r", encoding="utf-8") as f:
+            if os.path.exists("config/ai_agent_config.json"):
+                with open("config/ai_agent_config.json", "r", encoding="utf-8") as f:
                     config = json.load(f)
                     api_key = config.get("amap_key", "")
                     # 如果API密钥为空或为占位符，返回空字符串
@@ -2069,8 +2069,8 @@ class MCPToolsDialog(QDialog):
     def load_custom_tools(self):
         """加载自定义工具"""
         try:
-            if os.path.exists("custom_tools.json"):
-                with open("custom_tools.json", "r", encoding="utf-8") as f:
+            if os.path.exists("config/custom_tools.json"):
+                with open("config/custom_tools.json", "r", encoding="utf-8") as f:
                     return json.load(f)
         except:
             pass
@@ -2335,15 +2335,15 @@ class AddToolDialog(QDialog):
         
         # 同时更新配置文件中的API密钥
         try:
-            if os.path.exists("ai_agent_config.json"):
-                with open("ai_agent_config.json", "r", encoding="utf-8") as f:
+            if os.path.exists("config/ai_agent_config.json"):
+                with open("config/ai_agent_config.json", "r", encoding="utf-8") as f:
                     config = json.load(f)
                 
                 # 更新高德地图API密钥
                 config["amap_key"] = api_key
                 
                 # 保存更新后的配置
-                with open("ai_agent_config.json", "w", encoding="utf-8") as f:
+                with open("config/ai_agent_config.json", "w", encoding="utf-8") as f:
                     json.dump(config, f, ensure_ascii=False, indent=2)
                 
                 # 同时更新config.py中的默认值

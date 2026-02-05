@@ -533,7 +533,7 @@ class FrameworkReActAgent:
                 
                 weather_source = self.base_agent.config.get("weather_source", "高德地图API")
                 if weather_source == "高德地图API":
-                    from amap_tool import AmapTool
+                    from src.tools.amap_tool import AmapTool
                     amap_key = self.base_agent.config.get("amap_key", "")
                     weather = AmapTool.get_weather(city, amap_key)
                 else:

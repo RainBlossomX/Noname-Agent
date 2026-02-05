@@ -305,8 +305,8 @@ class LocalMCPServer:
         """获取和风天气API密钥"""
         try:
             # 从配置文件读取API密钥
-            if os.path.exists("ai_agent_config.json"):
-                with open("ai_agent_config.json", "r", encoding="utf-8") as f:
+            if os.path.exists("config/ai_agent_config.json"):
+                with open("config/ai_agent_config.json", "r", encoding="utf-8") as f:
                     config = json.load(f)
                     return config.get("heweather_key", "")
         except:
@@ -384,8 +384,8 @@ class LocalMCPServer:
         """获取高德地图API密钥"""
         try:
             # 从配置文件读取API密钥
-            if os.path.exists("ai_agent_config.json"):
-                with open("ai_agent_config.json", "r", encoding="utf-8") as f:
+            if os.path.exists("config/ai_agent_config.json"):
+                with open("config/ai_agent_config.json", "r", encoding="utf-8") as f:
                     config = json.load(f)
                     api_key = config.get("amap_key", "")
                     # 如果API密钥为空或为占位符，返回空字符串
@@ -464,8 +464,8 @@ class LocalMCPServer:
     def load_custom_tools(self):
         """加载自定义工具"""
         try:
-            if os.path.exists("custom_tools.json"):
-                with open("custom_tools.json", "r", encoding="utf-8") as f:
+            if os.path.exists("config/custom_tools.json"):
+                with open("config/custom_tools.json", "r", encoding="utf-8") as f:
                     custom_tools = json.load(f)
                     for tool_name, tool_info in custom_tools.items():
                         if tool_info.get("type") == "custom":
@@ -534,8 +534,8 @@ class LocalMCPServer:
     def get_custom_tools_config(self):
         """获取自定义工具配置"""
         try:
-            if os.path.exists("custom_tools.json"):
-                with open("custom_tools.json", "r", encoding="utf-8") as f:
+            if os.path.exists("config/custom_tools.json"):
+                with open("config/custom_tools.json", "r", encoding="utf-8") as f:
                     return json.load(f)
         except:
             pass
