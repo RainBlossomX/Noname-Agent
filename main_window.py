@@ -341,7 +341,7 @@ class AIAgentApp(QMainWindow):
         
         # 加载露尼西亚图片
         try:
-            pixmap = QPixmap("Lunesia.png")
+            # pixmap = QPixmap("Lunesia.png")
             if not pixmap.isNull():
                 # 重新计算适合增加高度后的9:16比例尺寸
                 # 系统状态栏宽度固定为320px，露尼西亚图片宽度也要320px
